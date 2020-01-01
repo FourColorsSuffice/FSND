@@ -43,7 +43,6 @@ class Venue(db.Model):
     facebook_link = db.Column(db.String(120))
     
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
-    days = db.Column(db.Integer)
     
 class Artist(db.Model):
     __tablename__ = 'Artist'
@@ -71,7 +70,7 @@ def format_datetime(value, format='medium'):
       format="EEEE MMMM, d, y 'at' h:mma"
   elif format == 'medium':
       format="EE MM, dd, y h:mma"
-  return babel.dates.format_datetime(date, format)
+  return babel.dates.format_datetime(date, format, locale='en_US')
 
 app.jinja_env.filters['datetime'] = format_datetime
 
